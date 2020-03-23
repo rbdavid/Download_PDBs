@@ -10,9 +10,12 @@ def download_url(url,extension):
     try:
         response = request.urlopen(url)
     except:
-        print(url + ' returns an error. No '+extension+' written out.')
+        print(url+' returns an error. No '+extension+' written out.')
         return
     response_str = str(response.read())
+    if 'Error Page' in response_str:
+        print(url+' returns an error. No '+extension+' written out.')
+        return
     response_list = response_str[2:-1].split('\\n')
     with open(pdb_code+'.'+extension,'w') as W:
         for line in response_list:
