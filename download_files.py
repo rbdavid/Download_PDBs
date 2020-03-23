@@ -7,7 +7,11 @@ pdb_urls = 'https://files.rcsb.org/view/%s.pdb'
 fasta_urls = 'https://www.rcsb.org/pdb/download/viewFastaFiles.do?structureIdList=%s&compressionType=uncompressed'
 
 def download_url(url,extension):
-    response = request.urlopen(url)
+    try:
+        response = request.urlopen(url)
+    except:
+        print(url + ' returns an error. No '+extension+' written out.')
+        return
     response_str = str(response.read())
     response_list = response_str[2:-1].split('\\n')
     with open(pdb_code+'.'+extension,'w') as W:
