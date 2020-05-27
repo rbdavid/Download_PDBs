@@ -5,6 +5,7 @@ import sys
 pdb_code = sys.argv[1].upper()
 pdb_urls = 'https://files.rcsb.org/view/%s.pdb'
 fasta_urls = 'https://www.rcsb.org/pdb/download/viewFastaFiles.do?structureIdList=%s&compressionType=uncompressed'
+cif_urls = 'https://files.rcsb.org/view/%s.cif'
 
 def download_url(url,extension):
     try:
@@ -23,4 +24,5 @@ def download_url(url,extension):
 
 download_url(pdb_urls %(pdb_code),'pdb')
 download_url(fasta_urls %(pdb_code),'fasta')
+download_url(cif_urls %(pdb_code),'cif')
 
